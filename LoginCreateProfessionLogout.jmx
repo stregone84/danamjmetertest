@@ -55,8 +55,12 @@
           <stringProp name="parameters"></stringProp>
           <boolProp name="resetInterpreter">false</boolProp>
           <stringProp name="script">import org.apache.commons.codec.binary.Base64;
+import org.apache.jmeter.services.FileServer;
+
 byte[] encodedUsernamePassword = Base64.encodeBase64(&quot;test:f71R53&quot;.getBytes());
-vars.put(&quot;base64HeaderValue&quot;,new String(encodedUsernamePassword));</stringProp>
+vars.put(&quot;base64HeaderValue&quot;,new String(encodedUsernamePassword));
+
+vars.put(&quot;scriptpath&quot;,FileServer.getFileServer().getBaseDir());</stringProp>
         </BeanShellPreProcessor>
         <hashTree/>
         <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
@@ -235,6 +239,25 @@ vars.put(&quot;base64HeaderValue&quot;,new String(encodedUsernamePassword));</st
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Storage Get 516C6745-F869-6CD1-FB44-21F0D0A75355" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/storage/thumb/200x200/516C6745-F869-6CD1-FB44-21F0D0A75355</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="My Profession Create Get" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
@@ -266,6 +289,30 @@ vars.put(&quot;base64HeaderValue&quot;,new String(encodedUsernamePassword));</st
         </RegexExtractor>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="My Profession Create Post" enabled="true">
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${scriptpath}\valecoccia.jpg" elementType="HTTPFileArg">
+                <stringProp name="File.path">${scriptpath}\valecoccia.jpg</stringProp>
+                <stringProp name="File.paramname">attributes[copia-documento-d-identita]</stringProp>
+                <stringProp name="File.mimetype">image/jpg</stringProp>
+              </elementProp>
+              <elementProp name="${scriptpath}\valecoccia.jpg" elementType="HTTPFileArg">
+                <stringProp name="File.path">${scriptpath}\valecoccia.jpg</stringProp>
+                <stringProp name="File.paramname">attributes[certificato-di-abilitazione-alla-professione]</stringProp>
+                <stringProp name="File.mimetype">image/jpg</stringProp>
+              </elementProp>
+              <elementProp name="${scriptpath}\valecoccia.jpg" elementType="HTTPFileArg">
+                <stringProp name="File.path">${scriptpath}\valecoccia.jpg</stringProp>
+                <stringProp name="File.paramname">attributes[visura-camerale]</stringProp>
+                <stringProp name="File.mimetype">image/jpg</stringProp>
+              </elementProp>
+              <elementProp name="${scriptpath}\valecoccia.jpg" elementType="HTTPFileArg">
+                <stringProp name="File.path">${scriptpath}\valecoccia.jpg</stringProp>
+                <stringProp name="File.paramname">attributes[durc]</stringProp>
+                <stringProp name="File.mimetype">image/jpg</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="_token" elementType="HTTPArgument">
@@ -282,47 +329,19 @@ vars.put(&quot;base64HeaderValue&quot;,new String(encodedUsernamePassword));</st
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
               </elementProp>
-              <elementProp name="attributes[copia-documento-d-identita]" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.name">attributes[copia-documento-d-identita]</stringProp>
-                <stringProp name="Argument.value">${attributes[copia-documento-d-identita]}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-              </elementProp>
               <elementProp name="attributes[ho-iniziato-questa-professione]" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.name">attributes[ho-iniziato-questa-professione]</stringProp>
                 <stringProp name="Argument.value">${attributes[ho-iniziato-questa-professione]}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">attributes[ho-iniziato-questa-professione]</stringProp>
               </elementProp>
               <elementProp name="attributes[abilitazioni-professionali]" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${attributes[abilitazioni-professionali]}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">attributes[abilitazioni-professionali]</stringProp>
-                <stringProp name="Argument.value">${attributes[certificato-di-abilitazione-alla-professione]}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-              </elementProp>
-              <elementProp name="attributes[certificato-di-abilitazione-alla-professione]" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.name">attributes[certificato-di-abilitazione-alla-professione]</stringProp>
-                <stringProp name="Argument.value">${attributes[certificato-di-abilitazione-alla-professione]}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-              </elementProp>
-              <elementProp name="attributes[visura-camerale]" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.name">attributes[visura-camerale]</stringProp>
-                <stringProp name="Argument.value">${attributes[visura-camerale]}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-              </elementProp>
-              <elementProp name="attributes[durc]" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.name">attributes[durc]</stringProp>
-                <stringProp name="Argument.value">${attributes[durce]}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
               </elementProp>
             </collectionProp>
           </elementProp>
@@ -340,6 +359,70 @@ vars.put(&quot;base64HeaderValue&quot;,new String(encodedUsernamePassword));</st
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="My Profession Create Get" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/auth/my_professions/create</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Token Profession Delete Extractor" enabled="true">
+          <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+          <stringProp name="RegexExtractor.refname">TOKEN_PROFESSION_DELETE</stringProp>
+          <stringProp name="RegexExtractor.regex"> type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;(.+?)&quot;&gt;</stringProp>
+          <stringProp name="RegexExtractor.template">$1$</stringProp>
+          <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+          <stringProp name="RegexExtractor.match_number">1</stringProp>
+          <stringProp name="Sample.scope">all</stringProp>
+          <stringProp name="Scope.variable">TOKEN_LOGIN</stringProp>
+        </RegexExtractor>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="My Profession Delete Post" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="_method" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.name">_method</stringProp>
+                <stringProp name="Argument.value">DELETE</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+              <elementProp name="_token" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.name">_token</stringProp>
+                <stringProp name="Argument.value">${TOKEN_PROFESSION_DELETE}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/auth/my_professions/31</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP AUTH INDEX" enabled="true">
